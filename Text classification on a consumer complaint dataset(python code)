@@ -1,0 +1,38 @@
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# load the data
+complaints = pd.read_csv('complaints.csv')
+
+# perform feature engineering
+# ...
+
+# preprocess the text data
+# ...
+
+# extract features using the Bag-of-Words model
+vectorizer = CountVectorizer()
+X = vectorizer.fit_transform(complaints['text'])
+
+# train a SVM classifier
+y = complaints['category']
+clf = SVC(kernel='linear')
+clf.fit(X, y)
+
+# evaluate the model
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='weighted')
+recall = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
+
+print('Accuracy:', accuracy)
+print('Precision:', precision)
+print('Recall:', recall)
+print('F1 Score:', f1)
+
+
+# predict the class labels for new consumer complaints
+# ...
